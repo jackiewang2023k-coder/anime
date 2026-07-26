@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="一个用 Canvas 动画绘制心形参数方程的浪漫网页。" />
+  <title>Heart Function Animation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <section class="card" aria-labelledby="title">
+      <div class="copy">
+        <p class="eyebrow">MATHEMATICAL LOVE</p>
+        <h1 id="title">用函数，画一颗心</h1>
+        <p class="formula">
+          x = 16sin³(t)<br />
+          y = 13cos(t) − 5cos(2t) − 2cos(3t) − cos(4t)
+        </p>
+        <p class="message">每一个点都有坐标，而你是我唯一确定的答案。</p>
+
+        <div class="controls">
+          <button id="replayButton" type="button">重新绘制</button>
+          <label>
+            动画速度
+            <input id="speedRange" type="range" min="0.4" max="2.4" step="0.1" value="1" />
+          </label>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="heartCanvas" aria-label="正在绘制的心形函数动画"></canvas>
+        <div class="glow" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
