@@ -66,7 +66,7 @@ body::before {
 
 h1 {
   margin: 12px 0 22px;
-  max-width: 8ch;
+  max-width: 9ch;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(3.3rem, 8vw, 6.4rem);
   line-height: .94;
@@ -84,36 +84,12 @@ h1 {
   line-height: 1.65;
 }
 
-.message {
-  max-width: 29rem;
-  color: var(--muted);
-  line-height: 1.85;
-}
-
 .controls {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
   align-items: center;
   margin-top: 30px;
-}
-
-button {
-  border: 0;
-  border-radius: 999px;
-  padding: 13px 21px;
-  color: white;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  background: linear-gradient(135deg, #ff286d, #ff6394);
-  box-shadow: 0 10px 30px rgba(255, 45, 111, .28);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(255, 45, 111, .4);
 }
 
 label {

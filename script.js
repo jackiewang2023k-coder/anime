@@ -1,11 +1,11 @@
 const canvas = document.getElementById('heartCanvas');
 const ctx = canvas.getContext('2d');
-const replayButton = document.getElementById('replayButton');
 const speedRange = document.getElementById('speedRange');
 
 let animationFrame;
-let startTime;
-let speed = 1;
+let previousTime;
+let cycleElapsed = 0;
+let speed = Number(speedRange.value);
 const duration = 5200;
 
 function resizeCanvas() {
@@ -90,34 +90,27 @@ function drawHeart(progress) {
 }
 
 function animate(timestamp) {
-  if (!startTime) startTime = timestamp;
-  const elapsed = (timestamp - startTime) * speed;
-  const linearProgress = Math.min(elapsed / duration, 1);
-  const progress = easeInOutCubic(linearProgress);
+  if (previousTime === undefined) previousTime = timestamp;
 
+  const deltaTime = timestamp - previousTime;
+  previousTime = timestamp;
+  cycleElapsed = (cycleElapsed + deltaTime * speed) % duration;
+
+  const linearProgress = cycleElapsed / duration;
+  const progress = easeInOutCubic(linearProgress);
   drawHeart(progress);
 
-  if (linearProgress < 1) {
-    animationFrame = requestAnimationFrame(animate);
-  }
-}
-
-function replay() {
-  cancelAnimationFrame(animationFrame);
-  startTime = undefined;
   animationFrame = requestAnimationFrame(animate);
 }
 
 speedRange.addEventListener('input', (event) => {
   speed = Number(event.target.value);
-  replay();
 });
 
-replayButton.addEventListener('click', replay);
 window.addEventListener('resize', () => {
   resizeCanvas();
-  replay();
+  drawHeart(easeInOutCubic(cycleElapsed / duration));
 });
 
 resizeCanvas();
-replay();
+animationFrame = requestAnimationFrame(animate);
